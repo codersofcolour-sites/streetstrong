@@ -1,8 +1,26 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
-    
+{% load wagtailcore_tags %}
+
+
 {% block content %}
-    <h1>{{ page.title }}</h1>
-    {% image page.image fill-320x320 %}
-    {{ include_blockpage.body|richtext }}
+    {{ self.subtitle }} is the subtitle
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h1 class="display-4">{{ self.title }}</h1>
+                    <div class="lead">{{ self.subtitle }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% for child in self.body %}
+            {% if child.block_type == 'heading' %}
+                <h2>{{ child }}</h2>
+            {% else %}
+                {{ child }}
+        {% endif %}
+    {% endfor %}
 {% endblock %} 
