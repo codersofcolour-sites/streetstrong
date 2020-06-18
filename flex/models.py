@@ -16,9 +16,10 @@ class FlexPage(Page):
     template = "flex/flex_page.html"
 
     body = StreamField(
-        [
+        [ 
             ("full_richtext", blocks.RichtextBlock()),
             ("simple_richtext", blocks.SimpleRichtextBlock()),
+            ("cards", blocks.CardBlock()),
         ], 
         null=True,
         blank=True,
