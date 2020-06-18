@@ -4,13 +4,26 @@ from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
-
+from streams import blocks
+from wagtail.core.fields import StreamField
+from wagtail.admin.edit_handlers import StreamFieldPanel
 
 class HomePage(Page):
     """Home page model."""
 
     template = "home/home_page.html"
     max_count = 1
+
+    body = StreamField(
+        [ 
+            ("full_richtext", blocks.RichtextBlock()),
+            ("simple_richtext", blocks.SimpleRichtextBlock()),
+            ("cards", blocks.CardBlock()),
+            ("cta", blocks.CTABlock()), 
+        ], 
+        null=True,
+        blank=True,
+    )     
 
     banner_title = models.CharField(max_length=100, blank=False, null=True)
     banner_subtitle = RichTextField(features=["bold", "italic"])
@@ -33,7 +46,8 @@ class HomePage(Page):
         FieldPanel("banner_title"),
         FieldPanel("banner_subtitle"),
         ImageChooserPanel("banner_image"),
-        PageChooserPanel("banner_cta")
+        PageChooserPanel("banner_cta"),
+        StreamFieldPanel('body'),
     ]
 
     class Meta:
