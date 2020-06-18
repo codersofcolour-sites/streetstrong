@@ -27,6 +27,7 @@
         {# Global stylesheets #}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{% static 'css/mysite.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
 
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
@@ -36,9 +37,44 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
-        <div class="container ph3 ph5-ns">
+        <nav class="navbar navbar-expand-lg navbar-light" style="font-family: 'Montserrat', sans-serif;background-color: #ffff7d; color: #111;"> 
+            <a class="navbar-brand" href="#" style="font-family:'Sedgwick Ave Display', cursive; font-size:30px; letter-spacing: 3px;">Street Strong Youth Project</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Latest News</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Contact Us
+                    </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">Contact Us</a>
+                        <a class="dropdown-item" href="#">Youth: Contact Us</a> 
+                        </div>
+                    </li>
+                </ul>
+            </div>
+          </nav>        
+
+          <br>
+
+        <div class="container-fluid">
             {% block content %}{% endblock %}
         </div>
+
+
+
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/mysite.js' %}"></script>
