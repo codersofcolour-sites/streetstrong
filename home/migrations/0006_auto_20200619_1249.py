@@ -8,7 +8,6 @@ import wagtail.core.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailimages', '0022_uploadedimage'),
         ('wagtailcore', '0045_assign_unlock_grouppagepermission'),
         ('home', '0005_homepage_body'),
     ]
