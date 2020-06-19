@@ -10,7 +10,7 @@
     <div class="view" style="background-image: url('{{ img.url }}'); background-size: cover; background-position: center center; height: 100vh; color: #fff !important">
         <h1 class="display-4" style="color: #222231;">{{ self.banner_title }}</h1>
         <div class="element" style="width: 200px; height: 20px; background-color: #f0e68c; margin-bottom: 10px;;"></div>
-        <div class="lead" style="background-color: #222231; text-align: center; width: 80%; margin: 0 auto;">{{ self.banner_subtitle|richtext }}</div>
+        <div class="lead" style="background-color: #222231; text-align: center; width: 80%; margin: 0 auto; letter-spacing: 2px;;">{{ self.banner_subtitle|richtext }}</div>
         {% if self.banner_cta %}
             <a class="btn btn-primary btn-lg" href="#" role="button">Learn More</a>
         {% endif %}
