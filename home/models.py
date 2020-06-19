@@ -6,7 +6,12 @@ from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from streams import blocks
 from wagtail.core.fields import StreamField
-from wagtail.admin.edit_handlers import StreamFieldPanel
+from wagtail.admin.edit_handlers import(
+    StreamFieldPanel,
+    MultiFieldPanel
+) 
+from wagtail.images.models import Image
+from wagtail.contrib.settings.models import BaseSetting, register_setting
 
 class HomePage(Page):
     """Home page model."""
@@ -25,12 +30,12 @@ class HomePage(Page):
         blank=True,
     )     
 
-    banner_title = models.CharField(max_length=100, blank=False, null=True)
-    banner_subtitle = RichTextField(features=["bold", "italic"])
+    banner_title = models.CharField(max_length=100, blank=True, null=True)
+    banner_subtitle = RichTextField(blank=True, features=["bold", "italic"])
     banner_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
-        blank=False,
+        blank=True,
         on_delete=models.SET_NULL,
         related_name="+"
     )
@@ -54,3 +59,25 @@ class HomePage(Page):
 
         verbose_name = "Home Page"
         verbose_name_plural = "Home Pages"
+
+@register_setting
+class SiteSettings(BaseSetting):
+    logo = models.OneToOneField(Image, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Business Logo')
+    panels = [
+        ImageChooserPanel('logo')
+    ]
+@register_setting
+class SocialMediaSettings(BaseSetting):
+    """Social media settings for our custom website."""
+
+    facebook = models.URLField(blank=True, null=True, help_text="Facebook URL")
+    twitter = models.URLField(blank=True, null=True, help_text="Twitter URL")
+    youtube = models.URLField(blank=True, null=True, help_text="YouTube Channel URL")
+
+    panels = [
+        MultiFieldPanel([
+            FieldPanel("facebook"),
+            FieldPanel("twitter"),
+            FieldPanel("youtube"),
+        ], heading="Social Media Settings")
+    ]
