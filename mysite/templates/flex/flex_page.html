@@ -14,21 +14,21 @@
         </div>
     </div>
 
-<div class="container" style="max-width: 700px;">
+<div class="container">
     <div class="row">
         {% for child in self.body %}
                 {% if child.block_type == 'full_richtext' %}
-                <div class="container">
+                <div class="container"">
                     <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-sm-12 col-md-8 col-lg-8">
                             {{ child }}
                         </div>
-                    <div>
+                    </div>
                 </div>
                 {% else %}
                     {{ child }}
             {% endif %}
         {% endfor %}
-    </div>  
+    </div>
 </div>
 {% endblock %} 

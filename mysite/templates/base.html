@@ -38,7 +38,7 @@
         {% wagtailuserbar %}
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="font-family: 'Montserrat', sans-serif;"> 
-            <a class="navbar-brand logo" href="#" style="font-family:'Sedgwick Ave Display', cursive; font-size:35px; letter-spacing: 3px;">Street Strong Youth Project</a>
+            <a class="navbar-brand logo" href="/" style="font-family:'Sedgwick Ave Display', cursive; font-size:40px; letter-spacing: 3px;">SSYP</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -52,7 +52,13 @@
                         <a class="nav-link" href="/about">About</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/">Latest News</a>
+                        <a class="nav-link" href="/latest-news">Latest News</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/upcoming-events">Upcoming Events</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/donate">Donate</a>
                     </li>
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -69,9 +75,9 @@
 
           <br>
 
-        <div class="container-fluid">
+
             {% block content %}{% endblock %}
-        </div>
+       
 
 
 

@@ -12,5 +12,5 @@ body{
     .logo { font-size: 35px; }
 }
 @media (min-width: 1200px) {
-    .logo { font-size: 35px; }
+    .logo { font-size: 35px; } 
 }
