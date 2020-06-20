@@ -7,9 +7,9 @@ class CardBlock(blocks.StructBlock):
     cards = blocks.ListBlock(
         blocks.StructBlock(
             [
-                ("image", ImageChooserBlock(required=True)),
-                ("title", blocks.CharBlock(required=True, max_length=100)),
-                ("text", blocks.TextBlock(required=True, max_length=300)),
+                ("image", ImageChooserBlock(required=False)),
+                ("title", blocks.CharBlock(required=False, max_length=100)),
+                ("text", blocks.TextBlock(required=False, max_length=300)),
                 ("button_page", blocks.PageChooserBlock(required=False)),
                 ("button_url", blocks.URLBlock(required=False, help_text="If the button page above is selected, that will be used first"))
             ]
@@ -48,7 +48,7 @@ class CTABlock(blocks.StructBlock):
     title = blocks.CharBlock(required=True, max_length=60)
     text = blocks.RichTextBlock(required=True, features=["bold", "italic"])
     button_page = blocks.PageChooserBlock(required=False)
-    button_url = blocks.URLBlock("required=False")
+    button_url = blocks.URLBlock(required=False)
     button_text = blocks.CharBlock(required=True, default='Learn More', max_length=50)
 
     class Meta: #noqa

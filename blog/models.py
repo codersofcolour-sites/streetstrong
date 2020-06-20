@@ -4,7 +4,51 @@ from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.edit_handlers import (
+    MultiFieldPanel,
+    StreamFieldPanel,
+)
+from wagtail.core.fields import StreamField
+from wagtail.snippets.models import register_snippet
+from streams import blocks 
 
+class BlogAuthor(models.Model):
+
+    name = models.CharField(max_length=100)
+    website = models.URLField(blank=True, null=True)
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=False,
+        related_name="+",
+    )
+
+    panels = [
+        MultiFieldPanel(
+            [ 
+                FieldPanel("name"),
+                ImageChooserPanel("image")
+            ],
+            heading="Name and Image"
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("website"),
+            ],
+            heading="Links"
+        )
+    ]
+
+    def __str__(self):
+
+        return self.name
+
+    class Meta: # noqa
+        verbose_name = "Blog Author"
+        verbose_name_plural = "Blog Authors"
+
+register_snippet(BlogAuthor)
 
 class BlogIndexPage(Page):
     intro = RichTextField(blank=True)
@@ -30,11 +74,20 @@ class BlogPage(Page):
         on_delete=models.SET_NULL
     )
     intro = models.CharField(max_length=250)
-    body = RichTextField(blank=True)
+    body = StreamField(
+        [ 
+            ("full_richtext", blocks.RichtextBlock()),
+            ("simple_richtext", blocks.SimpleRichtextBlock()),
+            ("cards", blocks.CardBlock()),
+            ("cta", blocks.CTABlock()), 
+        ], 
+        null=True,
+        blank=True,
+    )
     
     content_panels = Page.content_panels + [
         FieldPanel('date'),
         ImageChooserPanel('image'),
         FieldPanel('intro'),
-        FieldPanel('body', classname="full"),
+        StreamFieldPanel('body'),
     ]
