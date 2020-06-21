@@ -11,7 +11,7 @@
         <div class="element" style="width: 200px; height: 20px; background-color: #f0e68c; margin-bottom: 8px; border-top-right-radius: 20px; border-bottom-right-radius: 20px;"></div>
         <div class="lead" style="background-color: #202020; text-align: center; width: 80%; margin: 0 auto; letter-spacing: 2px; border-radius: 20px;">{{ self.banner_subtitle|richtext }}</div>
         {% if self.banner_cta %}
-            <a class="btn btn-light btn-lg" style="margin-left: 35%;" href="#" role="button">Find out what we're about</a>
+            <a class="btn btn-light btn-lg" style="margin-left: 35%;" href="/about" role="button">Find out what we're about</a>
         {% endif %}
     </div>   
 
@@ -21,8 +21,8 @@
           <div class="row justify-content-center">
             <div class="col-md-7">
               <h1 class="font-weight-light mt-4 text-black">Who are we?</h1>
-              <p class="lead text-black-50">We are a Portsmouth based universal youth provision initiative funded by Portsmouth City Council.</p>
-              <a class="btn btn-light btn-lg" href="#" role="button">Tell me more</a>
+              <p class="lead text-black-50">We are Street Strong Youth Project, a Portsmouth based universal youth provision initiative funded by Portsmouth City Council.</p>
+              <a class="btn btn-light btn-lg" href="/about" role="button">Tell me more</a>
             </div>
           </div>
         </div>
@@ -44,6 +44,16 @@
             <small>Copyright &copy; Street Strong Youth Project</small>
           </div>
         </footer>
+
+        <script>
+            window.sr = ScrollReveal();
+            sr.reveal('.btn', {
+                duration: 2000,
+                delay: 1000,
+                origin: 'bottom',
+                distance: '100px',
+            });
+        </script>
       </body>
 {% endblock %} 
 
