@@ -5,26 +5,45 @@
 
 {% block content %}
     {% image self.banner_image width-1500 as img %}
-
+<body class="d-flex flex-column">
     <div class="view" style="background-image: url('{{ img.url }}'); background-size: cover; background-position: center center; height: 100vh; color: #fff !important">
-        <h1 class="display-4" style="color: #222231;">{{ self.banner_title }}</h1>
-        <div class="element" style="width: 200px; height: 20px; background-color: #f0e68c; margin-bottom: 10px;;"></div>
-        <div class="lead" style="background-color: #222231; text-align: center; width: 80%; margin: 0 auto; letter-spacing: 2px;;">{{ self.banner_subtitle|richtext }}</div>
+     
+        <div class="element" style="width: 200px; height: 20px; background-color: #f0e68c; margin-bottom: 8px; border-top-right-radius: 20px; border-bottom-right-radius: 20px;"></div>
+        <div class="lead" style="background-color: #202020; text-align: center; width: 80%; margin: 0 auto; letter-spacing: 2px; border-radius: 20px;">{{ self.banner_subtitle|richtext }}</div>
         {% if self.banner_cta %}
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn More</a>
+            <a class="btn btn-light btn-lg" style="margin-left: 35%;" href="#" role="button">Find out what we're about</a>
         {% endif %}
     </div>   
 
+
+    <div id="page-content">
+        <div class="container text-center">
+          <div class="row justify-content-center">
+            <div class="col-md-7">
+              <h1 class="font-weight-light mt-4 text-black">Who are we?</h1>
+              <p class="lead text-black-50">We are a Portsmouth based universal youth provision initiative funded by Portsmouth City Council.</p>
+              <a class="btn btn-light btn-lg" href="#" role="button">Tell me more</a>
+            </div>
+          </div>
+        </div>
+      </div>
     {% for child in self.body %}
             {% if child.block_type == 'heading' %}
                 <h2>{{ child }}</h2>
             {% else %}
-                {{ child }}
+                <div class="text-center">{{ child }}</div>
         {% endif %}
     {% endfor %}
 
     {% for block in page.content %}
         {% include_block block %}
     {% endfor %}
+
+        <footer id="sticky-footer" class="py-4 bg-light text-black-50">
+          <div class="container text-center">
+            <small>Copyright &copy; Street Strong Youth Project</small>
+          </div>
+        </footer>
+      </body>
 {% endblock %} 
 
