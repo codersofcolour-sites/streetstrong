@@ -11,7 +11,6 @@ import wagtail.images.blocks
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailimages', '0022_uploadedimage'),
         ('flex', '0009_auto_20200620_2121'),
     ]
 
