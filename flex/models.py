@@ -14,14 +14,18 @@ class FlexPage(Page):
     """Flexible page class"""
 
     template = "flex/flex_page.html"
-
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL
+    )
     body = StreamField(
         [ 
             ("full_richtext", blocks.RichtextBlock()),
             ("simple_richtext", blocks.SimpleRichtextBlock()),
             ("cards", blocks.CardBlock()),
             ("cta", blocks.CTABlock()),
-            ('two_columns', blocks.TwoColumnBlock()), 
         ], 
         null=True,
         blank=True,
@@ -32,6 +36,7 @@ class FlexPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("subtitle"),
         StreamFieldPanel('body'),
+        ImageChooserPanel("image"),
     ]
 
     class Meta: # noqa

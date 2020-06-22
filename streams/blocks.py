@@ -12,6 +12,11 @@ from wagtail.core import blocks
 from wagtail.core.fields import StreamField
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
+from django import forms
+from django.apps import apps
+from django.templatetags.static import static
+
+from wagtail.core import blocks
 
 class CardBlock(blocks.StructBlock):
     title = blocks.CharBlock(required=True, help_text="Add your title")
@@ -68,21 +73,3 @@ class CTABlock(blocks.StructBlock):
         icon = "placeholder"
         label = "Call to Action"
 
-
-class ColumnBlock(blocks.StreamBlock):
-    heading = blocks.CharBlock(classname="full title")
-    paragraph = blocks.RichTextBlock()
-    image = ImageChooserBlock()
-
-    class Meta:
-        template = 'streams/column.html'
-
-class TwoColumnBlock(blocks.StructBlock):
-
-    left_column = ColumnBlock(icon='arrow-right', label='Left column content')
-    right_column = ColumnBlock(icon='arrow-right', label='Right column content')
-
-    class Meta:
-        template = 'streams/two_column_block.html'
-        icon = 'placeholder'
-        label = 'Two Columns'

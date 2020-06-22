@@ -18,15 +18,11 @@
     <div class="row">
         {% for child in self.body %}
                 {% if child.block_type == 'full_richtext' %}
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-8 col-lg-12 text-center">
+                        <div class="col-sm-12 col-md-6 col-lg-6 text-center">
                             {{ child }}
                         </div>
-                    </div>
-                </div>
                 {% else %}
-                    <div class="text-center">{{ child }}</div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 text-center">{{ child }}</div>
             {% endif %}
         {% endfor %}
     </div>
