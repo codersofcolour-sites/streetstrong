@@ -26,7 +26,7 @@ class CardBlock(blocks.StructBlock):
             [
                 ("image", ImageChooserBlock(required=False)),
                 ("title", blocks.CharBlock(required=False, max_length=100)),
-                ("text", blocks.TextBlock(required=False, max_length=300)),
+                ("text", blocks.TextBlock(required=False, max_length=500)),
                 ("button_page", blocks.PageChooserBlock(required=False)),
                 ("button_url", blocks.URLBlock(required=False, help_text="If the button page above is selected, that will be used first"))
             ]
