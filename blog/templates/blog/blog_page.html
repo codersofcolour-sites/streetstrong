@@ -3,24 +3,21 @@
     
 {% block content %}
 <div class="container">
-    <h1>{{ page.title }}</h1>
-    <p class="meta">{{ page.date }}</p>
-    {% image page.image fill-320x320 %}
-    <div class="intro">{{ page.intro }}</div>
-    {{ page.body|richtext }}
-    <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
-
-
+        <h1 class="text-center">{{ page.title }}</h1>
+        <p class="meta text-center">{{ page.date }}</p>
+        <div class="intro text-center">{{ page.intro }}</div>
     {% for child in self.body %}
-            {% if child.block_type == 'heading' %}
-                <h2>{{ child }}</h2>
+    <div class="row">
+        {% if child.block_type == 'full_richtext' %}
+                <div class="col-lg-6">{{ child }}</div>
             {% else %}
-                {{ child }}
+                <div class="col-lg-6">{{ child }}</div>
         {% endif %}
     {% endfor %}
-
     {% for block in page.content %}
         {% include_block block %}
     {% endfor %}
+    </div>
+        <p class="text-center"><a href="{% pageurl page.get_parent %}">Return to blog</a></p>
 </div>
 {% endblock %}
