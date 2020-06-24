@@ -19,21 +19,36 @@
         display: block;
         font-size: 80%;
     }
+    .btn {
+        background-color: #ffd700;
+    }
+    .btn:hover {
+      background-color: rgb(36, 35, 35);
+      color: #fff;  
+      transition: 1.5s ease;
+    }
 </style>
 
-<div class="container mt-5 mb-5">
-    <h1>{{ page.title }}</h1>
-    <p>
-        {{ self.intro|richtext }}
-    </p>
+<div class="jumbotron" style="background-color: #ffd700;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h1 class="display-4" style="color: #f8f8ff;">{{ self.title }}</h1>
+                <div class="lead" style="color: #f8f8ff;">{{ self.intro|richtext }}</div>
+            </div>
+        </div>
+    </div>
+</div>
 
+
+<div class="container mt-5 mb-5">
     <form action="{% pageurl page %}" method="POST">
         {% csrf_token %}
         <ul class="contact-form">
             {{ form.as_ul }}
         </ul>
 
-        <button type="button" class="btn btn-dark">
+        <button type="button" class="btn">
             Submit Form
         </button>
     </form>
