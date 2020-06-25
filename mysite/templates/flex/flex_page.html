@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailimages_tags wagtailcore_tags %}
 
 
 {% block content %}
@@ -13,7 +13,9 @@
             </div>
         </div>
     </div>
-
+    {% image self.banner_image fill-1200x300 as banner %}
+    <img src="{{ banner.url }}" alt="{{ banner.alt }}" style='width: 100%; height: auto;'>
+    
 <div class="container">
     <div class="row">
         {% for child in self.body %}
@@ -32,10 +34,16 @@
     </div>
 </div>
 
-<footer id="sticky-footer" class="py-4 bg-light text-black-50">
-    <div class="container text-center">
-    <small>Copyright &copy; Street Strong Youth Project</small>
-    </div>
-</footer>
+
+
+    {% for block in page.content %}
+        {% include_block block %}
+    {% endfor %}
+
+    <footer id="sticky-footer" class="py-4 bg-light text-black-50">
+        <div class="container text-center">
+        <small>Copyright &copy; Street Strong Youth Project | Created in collaboration with Coders of Colour and Zainab Adelopo</small>
+        </div>
+    </footer>
 
 {% endblock %} 

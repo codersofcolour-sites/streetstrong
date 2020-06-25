@@ -2,12 +2,27 @@
 {% load wagtailcore_tags wagtailimages_tags %}
     
 {% block content %}
-    <div class="container">
+
+{% image self.banner_image fill-1200x300 as banner %}
+<img src="{{ banner.url }}" alt="{{ banner.alt }}" style='width: 100%; height: auto;'>
+<div class="container">
+    <br>
                 <h1 class="text-center">{{ page.title }}</h1>
                 <p class="meta text-center">{{ page.date }}</p>
                 <div class="intro text-center">{{ page.intro }}</div>
-        
-            <div class="row">
+                <br>
+    {% if self.intro_image %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                {% image self.intro_image fill-1400x400 as intro_img %}
+                <img src="{{ intro_img.url }}" alt="{{ intro_img.alt }}">
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <br>
+           <!--- <div class="row">
                 {% for child in self.body %}
                 {% if child.block_type == 'full_richtext' %}
                         <div class="col-lg-6">
@@ -25,11 +40,29 @@
                 {% endfor %}
             </div>
         <p class="text-center"><a href="{% pageurl page.get_parent %}">Return to blog</a></p>
+    </div> -->
+
+    <div class="container">
+        <div class="row">
+            {% for child in self.body %}
+                {% if child.block_type == 'full_richtext' %}
+            <div class="col-lg-8 offset-lg-2">
+                {{ child }}
+                </div>
+                {% else %}
+                <div class="col-lg-8 offset-lg-2">
+                    {{ child }}
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <p class="text-center"><a href="{% pageurl page.get_parent %}">Return to blog</a></p>
     </div>
 
     <footer id="sticky-footer" class="py-4 bg-light text-black-50">
         <div class="container text-center">
-        <small>Copyright &copy; Street Strong Youth Project</small>
+        <small>Copyright &copy; Street Strong Youth Project | Created in collaboration with Coders of Colour and Zainab Adelopo</small>
         </div>
     </footer>
 {% endblock %}

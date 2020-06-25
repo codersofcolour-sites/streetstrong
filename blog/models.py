@@ -67,11 +67,19 @@ class BlogIndexPage(Page):
 
 class BlogPage(Page):
     date = models.DateField("Post date")
-    image = models.ForeignKey(
-        'wagtailimages.Image',
+    banner_image = models.ForeignKey(
+        "wagtailimages.Image",
         null=True,
         blank=True,
-        on_delete=models.SET_NULL
+        on_delete=models.SET_NULL,
+        related_name="+"
+    )
+    intro_image = models.ForeignKey(
+        "wagtailimages.Image",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text='Best size for this image will be 1400x400'
     )
     intro = models.CharField(max_length=250)
     body = StreamField(
@@ -87,7 +95,8 @@ class BlogPage(Page):
     
     content_panels = Page.content_panels + [
         FieldPanel('date'),
-        ImageChooserPanel('image'),
+        ImageChooserPanel("banner_image"),
+        ImageChooserPanel("intro_image"),
         FieldPanel('intro'),
         StreamFieldPanel('body'),
     ]
